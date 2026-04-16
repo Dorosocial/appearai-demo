@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zero Lead Leakage — AppearAI LeakProof</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black:#06060a; --card:#0f0f18; --card2:#13131e; --border:#1a1a28;
+  --purple:#7c3aed; --pl:#a78bfa; --pg:rgba(124,58,237,0.22);
+  --green:#22c55e; --red:#ef4444;
+  --white:#ffffff; --grey:#6b6b80; --light:#c4c4d8;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;overflow-x:hidden;}
+nav{position:sticky;top:0;left:0;right:0;z-index:200;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(6,6,10,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;letter-spacing:4px;color:var(--white);text-decoration:none;text-transform:uppercase;}
+.nav-cta{background:var(--purple);color:var(--white);padding:10px 20px;border-radius:5px;text-decoration:none;font-size:13px;font-weight:700;letter-spacing:1px;transition:all 0.2s;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;}
+.nav-cta:hover{background:var(--pl);transform:translateY(-1px);}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:100px 24px;position:relative;}
+.hero-glow{position:absolute;top:40%;left:50%;transform:translate(-50%,-50%);width:800px;height:600px;background:radial-gradient(ellipse,rgba(124,58,237,0.1) 0%,transparent 65%);pointer-events:none;}
+.live-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.25);padding:7px 16px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--green);margin-bottom:40px;}
+.live-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:blink 1.8s infinite;box-shadow:0 0 6px var(--green);}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.hero-h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(52px,10vw,110px);line-height:0.95;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:28px;position:relative;z-index:1;}
+.hero-h1 .hl{color:var(--pl);}
+.hero-p{font-size:clamp(16px,2vw,18px);color:var(--grey);line-height:1.75;max-width:560px;margin-bottom:16px;position:relative;z-index:1;}
+.hero-p strong{color:var(--light);font-weight:600;}
+.system-overview{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:680px;margin-top:40px;position:relative;z-index:1;}
+.system-card{background:rgba(124,58,237,0.06);border:1px solid rgba(124,58,237,0.2);border-radius:12px;padding:20px;text-align:left;}
+.system-card-icon{font-size:24px;margin-bottom:10px;}
+.system-card-title{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--white);margin-bottom:6px;}
+.system-card-desc{font-size:13px;color:var(--grey);line-height:1.6;}
+.system-card-desc strong{color:var(--pl);}
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:520px;margin-top:32px;position:relative;z-index:1;}
+.pain-item{background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:10px 14px;border-radius:6px;font-size:13px;color:var(--grey);font-style:italic;text-align:left;}
+.zero-banner{background:linear-gradient(90deg,rgba(34,197,94,0.08),rgba(124,58,237,0.08),rgba(34,197,94,0.08));border-top:1px solid rgba(34,197,94,0.15);border-bottom:1px solid rgba(34,197,94,0.15);padding:20px 24px;text-align:center;}
+.zero-banner-text{font-family:'Barlow Condensed',sans-serif;font-size:clamp(18px,3vw,26px);font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--white);}
+.zero-banner-text .g{color:var(--green);}
+.zero-banner-text .p{color:var(--pl);}
+.zero-banner-sub{font-size:14px;color:var(--grey);margin-top:6px;}
+.wrap{max-width:860px;margin:0 auto;padding:0 24px;}
+.sb{padding:80px 0 60px;}
+.dtag{display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pl);margin-bottom:14px;font-family:'Barlow Condensed',sans-serif;}
+.tdot{width:5px;height:5px;background:var(--purple);border-radius:50%;animation:blink 2s infinite;}
+.pq{font-size:13px;color:rgba(167,139,250,0.6);font-style:italic;margin-bottom:14px;}
+.sh{font-family:'Barlow Condensed',sans-serif;font-size:clamp(40px,6vw,72px);line-height:0.95;letter-spacing:1px;text-transform:uppercase;font-weight:800;margin-bottom:16px;}
+.sd{font-size:16px;color:var(--grey);line-height:1.75;max-width:560px;margin-bottom:12px;}
+.sc{font-size:14px;color:var(--pl);line-height:1.65;max-width:600px;margin-bottom:36px;padding:14px 18px;background:rgba(124,58,237,0.07);border-left:2px solid var(--purple);border-radius:0 6px 6px 0;}
+.leak-proof-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.25);padding:6px 14px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:16px;font-family:'Barlow Condensed',sans-serif;}
+.hr{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--border) 30%,var(--border) 70%,transparent);margin:20px 0 0;}
+.call-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:52px 40px;text-align:center;position:relative;overflow:hidden;}
+.call-card::after{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:radial-gradient(circle,rgba(124,58,237,0.1) 0%,transparent 65%);pointer-events:none;}
+.cl{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--grey);margin-bottom:16px;font-family:'Barlow Condensed',sans-serif;}
+.pn{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,9vw,88px);letter-spacing:5px;color:var(--pl);text-shadow:0 0 50px rgba(124,58,237,0.5);margin:12px 0 20px;position:relative;z-index:1;}
+.cpbtn{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(124,58,237,0.4);color:var(--pl);padding:11px 22px;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;font-family:'Barlow',sans-serif;position:relative;z-index:1;}
+.cpbtn:hover{background:rgba(124,58,237,0.1);}
+.client-note{background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);border-radius:8px;padding:16px 20px;margin-top:20px;font-size:13px;color:var(--green);line-height:1.6;position:relative;z-index:1;text-align:left;}
+.csteps{display:flex;flex-direction:column;gap:14px;margin-top:28px;text-align:left;max-width:400px;margin-left:auto;margin-right:auto;position:relative;z-index:1;}
+.cstep{display:flex;align-items:flex-start;gap:14px;}
+.sn{width:26px;height:26px;background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--pl);flex-shrink:0;margin-top:2px;}
+.st{font-size:14px;color:var(--light);line-height:1.55;}
+.calc-sec{background:linear-gradient(135deg,rgba(124,58,237,0.07) 0%,transparent 60%);border:1px solid rgba(124,58,237,0.18);border-radius:20px;padding:64px 52px;position:relative;overflow:hidden;}
+.calc-sec::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(124,58,237,0.08) 0%,transparent 65%);pointer-events:none;}
+.calc-h{font-family:'Barlow Condensed',sans-serif;font-size:clamp(36px,6vw,62px);line-height:0.95;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
+.calc-sub{color:var(--grey);font-size:16px;margin-bottom:48px;}
+.calc-flds{display:flex;flex-direction:column;gap:24px;margin-bottom:40px;}
+.cfl{font-size:13px;font-weight:700;color:var(--light);margin-bottom:8px;}
+.cfl span{color:var(--grey);font-weight:400;font-size:12px;}
+.cir{display:flex;align-items:center;}
+.cpfx{background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.25);border-right:none;border-radius:7px 0 0 7px;padding:13px 16px;font-size:15px;font-weight:700;color:var(--pl);font-family:'DM Mono',monospace;}
+.csfx{background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.25);border-left:none;border-radius:0 7px 7px 0;padding:13px 16px;font-size:15px;font-weight:700;color:var(--pl);font-family:'DM Mono',monospace;}
+.cinp{flex:1;background:rgba(255,255,255,0.04);border:1px solid var(--border);padding:13px 16px;font-size:16px;color:var(--white);font-family:'Barlow',sans-serif;outline:none;transition:border-color 0.2s;}
+.cinps{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:7px;padding:13px 16px;font-size:16px;color:var(--white);font-family:'Barlow',sans-serif;outline:none;transition:border-color 0.2s;}
+.cinp:focus,.cinps:focus{border-color:var(--purple);box-shadow:0 0 0 3px rgba(124,58,237,0.12);}
+.cinp::placeholder,.cinps::placeholder{color:var(--grey);}
+.cres{background:var(--black);border:1px solid var(--border);border-radius:14px;padding:44px;text-align:center;position:relative;overflow:hidden;min-height:120px;display:flex;align-items:center;justify-content:center;flex-direction:column;}
+.cres::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(239,68,68,0.05) 0%,transparent 65%);}
+.rl{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--grey);margin-bottom:16px;font-family:'Barlow Condensed',sans-serif;}
+.rn{font-family:'Barlow Condensed',sans-serif;font-size:clamp(60px,10vw,100px);color:var(--red);line-height:1;text-shadow:0 0 40px rgba(239,68,68,0.35);margin-bottom:8px;font-weight:800;}
+.rs{font-size:14px;color:var(--grey);margin-bottom:32px;line-height:1.6;max-width:480px;}
+.rcta{display:inline-flex;align-items:center;gap:10px;background:var(--purple);color:var(--white);padding:16px 36px;border-radius:7px;text-decoration:none;font-size:16px;font-weight:700;transition:all 0.2s;position:relative;z-index:1;font-family:'Barlow Condensed',sans-serif;letter-spacing:1px;text-transform:uppercase;}
+.rcta:hover{background:var(--pl);transform:translateY(-2px);box-shadow:0 8px 30px var(--pg);}
+.cph{color:var(--grey);font-size:15px;font-style:italic;position:relative;z-index:1;text-align:center;padding:20px;}
+.cohort-sec{background:linear-gradient(135deg,rgba(239,68,68,0.06) 0%,rgba(124,58,237,0.06) 100%);border:1px solid rgba(239,68,68,0.2);border-radius:20px;padding:64px 52px;text-align:center;position:relative;overflow:hidden;margin:0 24px 80px;max-width:812px;margin-left:auto;margin-right:auto;}
+.cohort-sec::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:500px;height:300px;background:radial-gradient(ellipse,rgba(239,68,68,0.08) 0%,transparent 65%);pointer-events:none;}
+.cohort-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);padding:7px 16px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--red);margin-bottom:28px;font-family:'Barlow Condensed',sans-serif;}
+.cohort-h{font-family:'Barlow Condensed',sans-serif;font-size:clamp(36px,6vw,64px);line-height:0.95;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:20px;}
+.cohort-h .hl{color:var(--pl);}
+.cohort-p{font-size:16px;color:var(--grey);line-height:1.75;max-width:540px;margin:0 auto 16px;}
+.cohort-p strong{color:var(--light);font-weight:600;}
+.cohort-note{font-size:14px;color:rgba(239,68,68,0.8);line-height:1.6;max-width:480px;margin:0 auto 36px;font-style:italic;}
+.cohort-cta{display:inline-flex;align-items:center;gap:12px;background:var(--purple);color:var(--white);padding:18px 40px;border-radius:7px;text-decoration:none;font-size:17px;font-weight:700;transition:all 0.2s;font-family:'Barlow Condensed',sans-serif;letter-spacing:1px;text-transform:uppercase;}
+.cohort-cta:hover{background:var(--pl);transform:translateY(-2px);box-shadow:0 12px 40px var(--pg);}
+.cohort-sub{margin-top:16px;font-size:13px;color:var(--grey);}
+.final{text-align:center;padding:100px 24px;position:relative;}
+.final::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(124,58,237,0.1) 0%,transparent 65%);pointer-events:none;}
+.fh{font-family:'Barlow Condensed',sans-serif;font-size:clamp(44px,8vw,90px);line-height:0.95;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:20px;position:relative;z-index:1;}
+.fh .hl{color:var(--pl);}
+.fp{font-size:17px;color:var(--grey);max-width:500px;margin:0 auto 40px;line-height:1.7;position:relative;z-index:1;}
+.fb{display:inline-flex;align-items:center;gap:12px;background:var(--purple);color:var(--white);padding:20px 48px;border-radius:7px;text-decoration:none;font-size:18px;font-weight:700;transition:all 0.2s;position:relative;z-index:1;font-family:'Barlow Condensed',sans-serif;letter-spacing:1px;text-transform:uppercase;}
+.fb:hover{background:var(--pl);transform:translateY(-3px);box-shadow:0 12px 40px var(--pg);}
+footer{text-align:center;padding:32px;border-top:1px solid var(--border);color:var(--grey);font-size:13px;}
+footer a{color:var(--pl);text-decoration:none;}
+@media(max-width:600px){
+  nav{padding:14px 20px;}
+  .call-card{padding:32px 20px;}
+  .calc-sec,.cohort-sec{padding:40px 20px;}
+  .pain-grid,.system-overview{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://appearrai.io" class="logo">APPEARAI.IO</a>
+  <a href="https://calendly.com/hello-appearai/30min" target="_blank" class="nav-cta">Get Free Audit →</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="live-pill"><span class="live-dot"></span>Live — Try It Right Now</div>
+  <h1 class="hero-h1">Every Missed Call Is a<br><span class="hl">Customer</span><br>You Just Gave Away</h1>
+  <p class="hero-p">While you were busy, your phone rang. Nobody answered. That customer called your <strong>competitor instead.</strong></p>
+  <p class="hero-p" style="margin-bottom:0;">These two live demos show exactly how we stop that — for your business.</p>
+  <div class="system-overview">
+    <div class="system-card">
+      <div class="system-card-icon">📞</div>
+      <div class="system-card-title">Missed Call Protection</div>
+      <div class="system-card-desc">Sarah answers every call you miss — in seconds, 24/7. <strong>No lead leaks from your phone line.</strong> Ever.</div>
+    </div>
+    <div class="system-card">
+      <div class="system-card-icon">💬</div>
+      <div class="system-card-title">Website Lead Capture</div>
+      <div class="system-card-desc">Sarah lives on your website and captures every visitor who shows interest. <strong>No lead leaks from your website.</strong> Ever.</div>
+    </div>
+  </div>
+  <div class="pain-grid">
+    <div class="pain-item">"We're too busy to answer every call"</div>
+    <div class="pain-item">"Customers never leave voicemails"</div>
+    <div class="pain-item">"We lose jobs to faster competitors"</div>
+    <div class="pain-item">"Our website never generates leads"</div>
+  </div>
+</section>
+
+<div class="zero-banner">
+  <div class="zero-banner-text"><span class="g">ZERO</span> LEAD LEAKAGE — <span class="p">EVERY CHANNEL. EVERY HOUR. EVERY DAY.</span></div>
+  <div class="zero-banner-sub">From the phone line to the website — LeakProof captures every lead that tries to reach you</div>
+</div>
+
+<div class="wrap">
+  <div class="sb">
+    <div class="leak-proof-tag">🔒 Missed Call Protection</div>
+    <div class="dtag"><span class="tdot"></span>Demo 1 — Most Powerful</div>
+    <p class="pq">"I called but no one picked up — so I called someone else..."</p>
+    <h2 class="sh">The Moment You Miss A Call<br>Sarah Seals The Leak</h2>
+    <p class="sd">Call the demo number below. Sarah answers in seconds — day or night, weekends, holidays, after hours. Every call answered. Zero leads lost from your phone line.</p>
+    <div class="sc">📍 <strong>Where this lives on your business:</strong> This replaces your voicemail permanently. You forward your existing business number to your own dedicated AI line — branded entirely to your company — whenever you are busy, on a job, or after hours. Your customers never hear voicemail again. They always get a real live conversation that captures their details and sends you an instant lead notification. <strong>Not a single call slips through.</strong></div>
+    <div class="call-card">
+      <div class="cl">This is our demo number — call it now</div>
+      <div class="pn">+1 (765) 222-5291</div>
+      <p style="color:var(--grey);font-size:14px;margin-bottom:20px;">Sarah answers in seconds — any time of day or night</p>
+      <button class="cpbtn" onclick="copyNum()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Number
+      </button>
+      <div class="client-note">✅ <strong>When we set this up for you:</strong> You get your own dedicated US phone number — branded entirely to your business, trained on your services, your pricing, and your service area. Nobody else shares your number. Every missed call gets answered. Every lead gets captured. Zero leakage.</div>
+      <div class="csteps">
+        <div class="cstep"><div class="sn">1</div><div class="st">Call the number above from any phone</div></div>
+        <div class="cstep"><div class="sn">2</div><div class="st">Sarah answers in seconds — no hold music, no voicemail</div></div>
+        <div class="cstep"><div class="sn">3</div><div class="st">Have a real conversation — ask anything a customer would ask</div></div>
+      </div>
+    </div>
+    <div class="hr"></div>
+  </div>
+
+  <div class="sb">
+    <div class="leak-proof-tag">🔒 Website Lead Capture</div>
+    <div class="dtag"><span class="tdot"></span>Demo 2</div>
+    <p class="pq">"People visit our website but nothing ever comes of it..."</p>
+    <h2 class="sh">Every Website Visitor<br>Becomes A Captured Lead</h2>
+    <p class="sd">Type anything a real customer would ask — pricing, storm damage, insurance claims, roof age. Sarah captures every visitor who shows any interest. Zero website leads escape.</p>
+    <div class="sc">📍 <strong>Where this lives on your business:</strong> This replaces your static contact form — the one nobody fills out — and sits as a live chat bubble on your website. Every visitor gets a real conversation that qualifies them as a lead and sends you their full details instantly. Your website stops being a brochure and becomes a <strong>zero-leakage lead machine</strong> working at 2am, on weekends, and during every storm season. Fully customised with your business name, your services, and your service area.</div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:48px 40px;text-align:center;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:radial-gradient(circle,rgba(124,58,237,0.08) 0%,transparent 65%);pointer-events:none;"></div>
+      <div style="font-size:48px;margin-bottom:20px;">💬</div>
+      <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;position:relative;z-index:1;">Sarah Is Live In The Bottom Right</h3>
+      <p style="font-size:16px;color:var(--grey);line-height:1.7;max-width:440px;margin:0 auto 28px;position:relative;z-index:1;">Click the purple chat bubble in the <strong style="color:var(--pl);">bottom right corner</strong> of this page to start a real conversation with Sarah. Ask anything a roofing customer would ask — she qualifies every lead automatically.</p>
+      <div style="display:inline-flex;align-items:center;gap:10px;background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.3);border-radius:8px;padding:14px 24px;font-size:14px;color:var(--pl);font-weight:600;position:relative;z-index:1;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Click the chat bubble → bottom right corner of this page
+      </div>
+      <div style="margin-top:24px;display:flex;flex-direction:column;gap:10px;max-width:380px;margin-left:auto;margin-right:auto;">
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--grey);"><span style="color:var(--green);">✓</span> Sarah qualifies every visitor as a lead</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--grey);"><span style="color:var(--green);">✓</span> Collects name, phone, issue, location automatically</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--grey);"><span style="color:var(--green);">✓</span> Sends you an instant lead notification by email</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--grey);"><span style="color:var(--green);">✓</span> Works 24/7 — never misses a website visitor</div>
+      </div>
+    </div>
+    <div class="hr"></div>
+  </div>
+</div>
+
+<div style="padding:0 24px 80px;max-width:860px;margin:0 auto;">
+  <div class="dtag" style="margin-bottom:20px;"><span class="tdot"></span>Find Out Right Now</div>
+  <div class="calc-sec">
+    <h2 class="calc-h">How Much Is Your<br>Lead Leak Costing You?</h2>
+    <p class="calc-sub">Fill in your real numbers. Most roofing companies are shocked by what they see.</p>
+    <div class="calc-flds">
+      <div>
+        <div class="cfl">Missed calls per week <span>— how many calls go unanswered?</span></div>
+        <input type="number" class="cinps" id="missedCalls" placeholder="e.g. 10" min="0" oninput="updateCalc()">
+      </div>
+      <div>
+        <div class="cfl">Average job value <span>— what does a typical roofing job pay you?</span></div>
+        <div class="cir"><div class="cpfx">$</div><input type="number" class="cinp" id="jobValue" placeholder="e.g. 8000" min="0" oninput="updateCalc()" style="border-radius:0 7px 7px 0;"></div>
+      </div>
+      <div>
+        <div class="cfl">% of unanswered callers who hire a competitor <span>— industry average is 60%</span></div>
+        <div class="cir"><input type="number" class="cinp" id="lostRate" placeholder="e.g. 60" min="0" max="100" oninput="updateCalc()" style="border-radius:7px 0 0 7px;"><div class="csfx">%</div></div>
+      </div>
+    </div>
+    <div class="cres" id="calcRes"><div class="cph">Fill in your numbers above to see the size of your lead leak</div></div>
+  </div>
+</div>
+
+<div class="cohort-sec">
+  <div class="cohort-badge">⚡ Current Cohort — Dallas TX Roofing</div>
+  <h2 class="cohort-h">Spots In This Cohort<br>Are <span class="hl">Filling Up</span></h2>
+  <p class="cohort-p">We work with a <strong>limited number of businesses per cohort</strong> so every client gets our full attention and sees real results. We do not take on more than we can deliver for.</p>
+  <p class="cohort-note">When this cohort is full we close the doors and focus entirely on the businesses already inside. The next cohort opens when we have capacity again — and there is no guarantee of timing.</p>
+  <a href="https://calendly.com/hello-appearai/30min" target="_blank" class="cohort-cta">Claim Your Spot →</a>
+  <p class="cohort-sub">Free 20-minute call — no obligation — we will show you exactly what LeakProof looks like for your specific business</p>
+</div>
+
+<section class="final">
+  <h2 class="fh">Ready To Seal Your<br><span class="hl">Lead Leak</span> For Good?</h2>
+  <p class="fp">Every day without LeakProof you are handing jobs to the competitor who answers faster and has a website that actually captures leads. Book a free 20-minute call and we will show you exactly what zero leakage looks like for your business.</p>
+  <a href="https://calendly.com/hello-appearai/30min" target="_blank" class="fb">Book a Free Strategy Call →</a>
+</section>
+
+<footer>
+  <p>© 2026 <a href="https://appearrai.io">AppearAI.io</a> — Built for local businesses that refuse to lose leads.</p>
+</footer>
+
+<script>
+function copyNum(){navigator.clipboard.writeText('+17652225291').then(()=>{const b=document.querySelector('.cpbtn');const o=b.innerHTML;b.textContent='✓ Copied!';setTimeout(()=>{b.innerHTML=o;},2000);});}
+function updateCalc(){
+  const missed=parseFloat(document.getElementById('missedCalls').value)||0;
+  const jobVal=parseFloat(document.getElementById('jobValue').value)||0;
+  const lostRate=parseFloat(document.getElementById('lostRate').value)||0;
+  const res=document.getElementById('calcRes');
+  if(!missed||!jobVal||!lostRate){res.innerHTML='<div class="cph">Fill in all three fields above to see the size of your lead leak</div>';return;}
+  const monthly=Math.round(missed*4.33*(lostRate/100)*jobVal);
+  const yearly=monthly*12;
+  res.innerHTML=`<div class="rl">Your lead leak is costing you every single month</div><div class="rn">$${monthly.toLocaleString()}</div><div class="rs">That is $${yearly.toLocaleString()} per year walking out your door. LeakProof seals every gap — and pays for itself with the very first job it captures.</div><a href="https://calendly.com/hello-appearai/30min" target="_blank" class="rcta">Seal The Leak Now →</a>`;
+}
+</script>
+
+<script type="text/javascript">
+  (function(d, t) {
+    var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+    v.onload = function() {
+      window.voiceflow.chat.load({
+        verify: { projectID: '69cb94410587bde474ad4569' },
+        url: 'https://general-runtime.voiceflow.com',
+        versionID: 'production',
+        voice: { url: 'https://runtime-api.voiceflow.com' }
+      });
+    }
+    v.src = 'https://cdn.voiceflow.com/widget-next/bundle.mjs';
+    v.type = 'text/javascript';
+    s.parentNode.insertBefore(v, s);
+  })(document, 'script');
+</script>
+</body>
+</html>
