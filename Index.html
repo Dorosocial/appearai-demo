@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legal — Appear AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black:#06060a; --card:#0f0f18; --border:#1a1a28;
+  --purple:#7c3aed; --pl:#a78bfa;
+  --white:#ffffff; --grey:#6b6b80; --light:#c4c4d8;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;line-height:1.75;}
+nav{padding:20px 40px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);}
+.logo{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:var(--white);text-decoration:none;}
+.wrap{max-width:800px;margin:0 auto;padding:60px 24px;}
+.tabs{display:flex;gap:8px;margin-bottom:48px;flex-wrap:wrap;}
+.tab{padding:10px 20px;border-radius:6px;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border:1px solid var(--border);color:var(--grey);background:transparent;font-family:'Barlow',sans-serif;transition:all 0.2s;}
+.tab.active{background:var(--purple);color:var(--white);border-color:var(--purple);}
+.section{display:none;}
+.section.active{display:block;}
+h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(32px,5vw,52px);font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.updated{font-size:13px;color:var(--grey);margin-bottom:40px;}
+h2{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--pl);margin:36px 0 12px;}
+p{color:var(--light);margin-bottom:16px;font-size:15px;}
+ul{color:var(--light);margin-bottom:16px;padding-left:24px;font-size:15px;}
+ul li{margin-bottom:8px;}
+a{color:var(--pl);text-decoration:none;}
+footer{text-align:center;padding:32px;border-top:1px solid var(--border);color:var(--grey);font-size:13px;margin-top:60px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://appearai.io" class="logo">APPEARAI.IO</a>
+</nav>
+
+<div class="wrap">
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('privacy')">Privacy Policy</button>
+    <button class="tab" onclick="showTab('terms')">Terms of Service</button>
+    <button class="tab" onclick="showTab('refund')">Refund Policy</button>
+  </div>
+
+  <!-- PRIVACY POLICY -->
+  <div class="section active" id="privacy">
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: May 6, 2026</p>
+
+    <h2>1. Who We Are</h2>
+    <p>Appear AI is a product of Avarabrands Inc, a corporation registered in the State of Delaware, United States. Our registered address is 151 Continental Dr, Suite 305, Newark, DE 19713. We build and deploy AI-powered tools for local businesses. You can reach us at hello@appearai.io.</p>
+
+    <h2>2. Information We Collect</h2>
+    <p>We collect information you provide directly to us including:</p>
+    <ul>
+      <li>Name and contact information when you fill out forms or contact us</li>
+      <li>Payment information when you purchase our services — processed securely by our payment partners</li>
+      <li>Business information you provide during onboarding</li>
+      <li>Communications you send to us via email or our website chat</li>
+    </ul>
+    <p>We also collect certain information automatically when you visit our website including your IP address, browser type, pages visited, and time spent on pages.</p>
+
+    <h2>3. How We Use Your Information</h2>
+    <p>We use the information we collect to:</p>
+    <ul>
+      <li>Provide, maintain, and improve our services</li>
+      <li>Process transactions and send related information</li>
+      <li>Send you technical notices and support messages</li>
+      <li>Respond to your comments and questions</li>
+      <li>Send marketing communications where you have opted in</li>
+      <li>Monitor and analyse trends and usage</li>
+    </ul>
+
+    <h2>4. Information Sharing</h2>
+    <p>We do not sell, trade, or rent your personal information to third parties. We may share your information with trusted service providers who assist us in operating our business, subject to confidentiality agreements. We may also disclose your information where required by law.</p>
+
+    <h2>5. Data Security</h2>
+    <p>We implement appropriate technical and organisational measures to protect your personal information against unauthorised access, alteration, disclosure, or destruction. However, no method of transmission over the internet is 100% secure.</p>
+
+    <h2>6. Data Retention</h2>
+    <p>We retain your personal information for as long as necessary to provide our services and comply with our legal obligations. You may request deletion of your data at any time by contacting us at hello@appearai.io.</p>
+
+    <h2>7. Your Rights</h2>
+    <p>You have the right to access, correct, or delete your personal information. You may also object to or restrict certain processing of your data. To exercise these rights contact us at hello@appearai.io.</p>
+
+    <h2>8. Cookies</h2>
+    <p>We use cookies and similar tracking technologies to track activity on our website and hold certain information. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent.</p>
+
+    <h2>9. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page with an updated date.</p>
+
+    <h2>10. Contact Us</h2>
+    <p>If you have questions about this Privacy Policy contact us at hello@appearai.io or write to us at Avarabrands Inc, 151 Continental Dr, Suite 305, Newark, DE 19713, United States.</p>
+  </div>
+
+  <!-- TERMS OF SERVICE -->
+  <div class="section" id="terms">
+    <h1>Terms of Service</h1>
+    <p class="updated">Last updated: May 6, 2026</p>
+
+    <h2>1. Agreement to Terms</h2>
+    <p>By accessing or using Appear AI services you agree to be bound by these Terms of Service and our Privacy Policy. If you do not agree to these terms do not use our services. These terms constitute a legally binding agreement between you and Avarabrands Inc.</p>
+
+    <h2>2. Description of Services</h2>
+    <p>Appear AI provides AI-powered tools for local businesses including AI voice receptionists, website lead capture agents, and business automation systems. Services are provided on a setup fee plus monthly subscription basis.</p>
+
+    <h2>3. Account Registration</h2>
+    <p>To use our services you must provide accurate and complete information. You are responsible for maintaining the confidentiality of your account and for all activities that occur under your account.</p>
+
+    <h2>4. Payment Terms</h2>
+    <p>Services are billed as follows:</p>
+    <ul>
+      <li>One-time setup fee charged at the time of purchase</li>
+      <li>Monthly subscription fee charged on a recurring basis from the date of setup completion</li>
+      <li>All fees are non-refundable except as described in our Refund Policy</li>
+      <li>We reserve the right to change pricing with 30 days notice</li>
+    </ul>
+
+    <h2>5. Acceptable Use</h2>
+    <p>You agree not to use our services to:</p>
+    <ul>
+      <li>Violate any applicable laws or regulations</li>
+      <li>Infringe on intellectual property rights of others</li>
+      <li>Transmit harmful, offensive, or misleading content</li>
+      <li>Attempt to gain unauthorised access to our systems</li>
+      <li>Resell or redistribute our services without written permission</li>
+    </ul>
+
+    <h2>6. Intellectual Property</h2>
+    <p>All content, features, and functionality of Appear AI services are owned by Avarabrands Inc and are protected by intellectual property laws. You may not copy, modify, or distribute our proprietary technology without express written permission.</p>
+
+    <h2>7. Service Availability</h2>
+    <p>We strive to maintain high availability of our services but do not guarantee uninterrupted access. We are not liable for any downtime, interruptions, or data loss beyond our reasonable control.</p>
+
+    <h2>8. Limitation of Liability</h2>
+    <p>To the fullest extent permitted by law, Avarabrands Inc shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of our services. Our total liability shall not exceed the amount you paid us in the three months preceding the claim.</p>
+
+    <h2>9. Termination</h2>
+    <p>Either party may terminate the service agreement with 30 days written notice. We reserve the right to terminate or suspend access immediately for violations of these terms. Upon termination your access to the services will cease.</p>
+
+    <h2>10. Governing Law</h2>
+    <p>These terms shall be governed by the laws of the State of Delaware, United States, without regard to conflict of law provisions.</p>
+
+    <h2>11. Changes to Terms</h2>
+    <p>We reserve the right to modify these terms at any time. Continued use of our services after changes constitutes acceptance of the new terms.</p>
+
+    <h2>12. Contact Us</h2>
+    <p>For questions about these Terms of Service contact us at hello@appearai.io or write to Avarabrands Inc, 151 Continental Dr, Suite 305, Newark, DE 19713, United States.</p>
+  </div>
+
+  <!-- REFUND POLICY -->
+  <div class="section" id="refund">
+    <h1>Refund Policy</h1>
+    <p class="updated">Last updated: May 6, 2026</p>
+
+    <h2>1. Setup Fees</h2>
+    <p>Our one-time setup fees are non-refundable once work has commenced on your account. Setup work begins within 24 hours of payment. If you cancel before setup work begins you are entitled to a full refund of the setup fee.</p>
+
+    <h2>2. Monthly Subscription Fees</h2>
+    <p>Monthly subscription fees are non-refundable once the billing period has begun. You may cancel your subscription at any time and your access will continue until the end of the current billing period. No partial refunds are provided for unused portions of a billing period.</p>
+
+    <h2>3. Satisfaction Guarantee</h2>
+    <p>If you are not satisfied with our services within the first 7 days following setup completion please contact us at hello@appearai.io. We will work with you to resolve any issues. If we are unable to resolve your concerns to a reasonable standard we will issue a full refund of your setup fee.</p>
+
+    <h2>4. Technical Failures</h2>
+    <p>In the event of a significant technical failure on our part that renders our services unusable for an extended period we will provide a pro-rated credit or refund for the affected period at our discretion.</p>
+
+    <h2>5. How to Request a Refund</h2>
+    <p>To request a refund contact us at hello@appearai.io with your account details and reason for the request. We will respond within 2 business days and process approved refunds within 5 to 10 business days.</p>
+
+    <h2>6. Contact Us</h2>
+    <p>For questions about our Refund Policy contact us at hello@appearai.io or write to Avarabrands Inc, 151 Continental Dr, Suite 305, Newark, DE 19713, United States.</p>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 <a href="https://appearai.io">Appear AI</a> · A product of Avarabrands Inc · 151 Continental Dr, Suite 305, Newark, DE 19713</p>
+</footer>
+
+<script>
+function showTab(tab) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(tab).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
