@@ -323,10 +323,11 @@ footer p:last-child{margin-bottom:0;}
 <div class="cta-sec" id="consultation">
   <h2 class="cta-h">Get Your Free<br><span class="hl">Setup Consultation</span></h2>
   <p class="cta-p">Leave your name and email. Your dedicated account manager will reach out within 24 hours to walk you through exactly what LeakProof looks like for your specific business.</p>
-  <form class="cta-form" onsubmit="submitForm(event)">
-    <input type="text" class="cta-input" id="formName" placeholder="Your name" required>
-    <input type="email" class="cta-input" id="formEmail" placeholder="Your email address" required>
-    <button type="submit" class="cta-btn" id="submitBtn">Get Your Free Setup Consultation →</button>
+  <form class="cta-form" action="https://formspree.io/f/xwvyrrnr" method="POST">
+    <input type="text" name="name" class="cta-input" placeholder="Your name" required>
+    <input type="email" name="email" class="cta-input" placeholder="Your email address" required>
+    <input type="hidden" name="_subject" value="Free Setup Consultation Request — LeakProof">
+    <button type="submit" class="cta-btn">Get Your Free Setup Consultation →</button>
   </form>
   <p class="cta-sub" id="formMsg">No commitment. No pressure. Just a real conversation about your business.</p>
 </div>
@@ -356,22 +357,7 @@ function updateCalc(){
   res.innerHTML=`<div class="rl">Your lead leak is costing you every single month</div><div class="rn">$${monthly.toLocaleString()}</div><div class="rs">That is $${yearly.toLocaleString()} per year walking out your door. LeakProof pays for itself with the very first job it captures.</div><a href="#consultation" class="rcta">Get Your Free Consultation →</a>`;
 }
 
-function submitForm(e){
-  e.preventDefault();
-  const name=document.getElementById('formName').value;
-  const email=document.getElementById('formEmail').value;
-  const btn=document.getElementById('submitBtn');
-  const msg=document.getElementById('formMsg');
-  btn.textContent='Sending...';
-  btn.disabled=true;
-  const mailtoLink=`mailto:hello@appearai.io?subject=Free Setup Consultation Request&body=Name: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0A%0AThis person requested a free setup consultation from the LeakProof demo page.`;
-  window.location.href=mailtoLink;
-  setTimeout(()=>{
-    btn.textContent='Request Sent ✓';
-    msg.textContent='Thank you — your account manager will be in touch within 24 hours.';
-    msg.style.color='#22c55e';
-  },1000);
-}
+
 </script>
 
 <script type="text/javascript">
