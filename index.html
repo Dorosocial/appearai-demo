@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zero Lead Leakage — Appear AI LeakProof</title>
+<title>Zero Lead Leakage — AppearAI LeakProof</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -16,12 +16,10 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;overflow-x:hidden;}
-nav{position:sticky;top:0;z-index:200;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(6,6,10,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+nav{position:sticky;top:0;left:0;right:0;z-index:200;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(6,6,10,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
 .logo{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;letter-spacing:4px;color:var(--white);text-decoration:none;text-transform:uppercase;}
 .nav-cta{background:var(--purple);color:var(--white);padding:10px 20px;border-radius:5px;text-decoration:none;font-size:13px;font-weight:700;letter-spacing:1px;transition:all 0.2s;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;}
 .nav-cta:hover{background:var(--pl);transform:translateY(-1px);}
-
-/* HERO */
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:100px 24px;position:relative;}
 .hero-glow{position:absolute;top:40%;left:50%;transform:translate(-50%,-50%);width:800px;height:600px;background:radial-gradient(ellipse,rgba(124,58,237,0.1) 0%,transparent 65%);pointer-events:none;}
 .live-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.25);padding:7px 16px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--green);margin-bottom:40px;}
@@ -37,15 +35,13 @@ nav{position:sticky;top:0;z-index:200;padding:16px 40px;display:flex;justify-con
 .system-card-title{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--white);margin-bottom:6px;}
 .system-card-desc{font-size:13px;color:var(--grey);line-height:1.6;}
 .system-card-desc strong{color:var(--pl);}
-
-/* BANNER */
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:520px;margin-top:32px;position:relative;z-index:1;}
+.pain-item{background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:10px 14px;border-radius:6px;font-size:13px;color:var(--grey);font-style:italic;text-align:left;}
 .zero-banner{background:linear-gradient(90deg,rgba(34,197,94,0.08),rgba(124,58,237,0.08),rgba(34,197,94,0.08));border-top:1px solid rgba(34,197,94,0.15);border-bottom:1px solid rgba(34,197,94,0.15);padding:20px 24px;text-align:center;}
 .zero-banner-text{font-family:'Barlow Condensed',sans-serif;font-size:clamp(18px,3vw,26px);font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--white);}
 .zero-banner-text .g{color:var(--green);}
 .zero-banner-text .p{color:var(--pl);}
 .zero-banner-sub{font-size:14px;color:var(--grey);margin-top:6px;}
-
-/* SHARED */
 .wrap{max-width:860px;margin:0 auto;padding:0 24px;}
 .sb{padding:80px 0 60px;}
 .dtag{display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pl);margin-bottom:14px;font-family:'Barlow Condensed',sans-serif;}
@@ -56,8 +52,6 @@ nav{position:sticky;top:0;z-index:200;padding:16px 40px;display:flex;justify-con
 .sc{font-size:14px;color:var(--pl);line-height:1.65;max-width:600px;margin-bottom:36px;padding:14px 18px;background:rgba(124,58,237,0.07);border-left:2px solid var(--purple);border-radius:0 6px 6px 0;}
 .leak-proof-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.25);padding:6px 14px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:16px;font-family:'Barlow Condensed',sans-serif;}
 .hr{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--border) 30%,var(--border) 70%,transparent);margin:20px 0 0;}
-
-/* DEMO 1 */
 .call-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:52px 40px;text-align:center;position:relative;overflow:hidden;}
 .call-card::after{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:radial-gradient(circle,rgba(124,58,237,0.1) 0%,transparent 65%);pointer-events:none;}
 .cl{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--grey);margin-bottom:16px;font-family:'Barlow Condensed',sans-serif;}
@@ -69,8 +63,6 @@ nav{position:sticky;top:0;z-index:200;padding:16px 40px;display:flex;justify-con
 .cstep{display:flex;align-items:flex-start;gap:14px;}
 .sn{width:26px;height:26px;background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--pl);flex-shrink:0;margin-top:2px;}
 .st{font-size:14px;color:var(--light);line-height:1.55;}
-
-/* CALCULATOR */
 .calc-sec{background:linear-gradient(135deg,rgba(124,58,237,0.07) 0%,transparent 60%);border:1px solid rgba(124,58,237,0.18);border-radius:20px;padding:64px 52px;position:relative;overflow:hidden;}
 .calc-sec::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(124,58,237,0.08) 0%,transparent 65%);pointer-events:none;}
 .calc-h{font-family:'Barlow Condensed',sans-serif;font-size:clamp(36px,6vw,62px);line-height:0.95;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
@@ -93,32 +85,27 @@ nav{position:sticky;top:0;z-index:200;padding:16px 40px;display:flex;justify-con
 .rcta{display:inline-flex;align-items:center;gap:10px;background:var(--purple);color:var(--white);padding:16px 36px;border-radius:7px;text-decoration:none;font-size:16px;font-weight:700;transition:all 0.2s;position:relative;z-index:1;font-family:'Barlow Condensed',sans-serif;letter-spacing:1px;text-transform:uppercase;}
 .rcta:hover{background:var(--pl);transform:translateY(-2px);box-shadow:0 8px 30px var(--pg);}
 .cph{color:var(--grey);font-size:15px;font-style:italic;position:relative;z-index:1;text-align:center;padding:20px;}
-
-/* OFFER SECTION */
 .offer-sec{background:linear-gradient(135deg,rgba(124,58,237,0.08) 0%,rgba(124,58,237,0.03) 100%);border:1px solid rgba(124,58,237,0.25);border-radius:20px;padding:64px 52px;position:relative;overflow:hidden;margin:0 auto 80px;max-width:860px;}
 .offer-sec::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(124,58,237,0.1) 0%,transparent 65%);pointer-events:none;}
 .offer-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.3);padding:7px 16px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--pl);margin-bottom:28px;font-family:'Barlow Condensed',sans-serif;}
 .offer-h{font-family:'Barlow Condensed',sans-serif;font-size:clamp(36px,6vw,64px);line-height:0.95;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:40px;}
 .offer-h .hl{color:var(--pl);}
 .offer-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px;}
-.offer-item{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:20px;}
-.offer-item-icon{font-size:20px;margin-bottom:8px;}
-.offer-item-title{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--white);margin-bottom:4px;}
-.offer-item-desc{font-size:12px;color:var(--grey);line-height:1.6;}
+.offer-item{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:20px;display:flex;align-items:flex-start;gap:12px;}
+.offer-item-icon{font-size:18px;flex-shrink:0;}
+.offer-item-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--white);}
 .offer-guarantees{display:flex;flex-direction:column;gap:10px;margin-bottom:40px;}
 .offer-guarantee{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--light);}
-.offer-guarantee span{color:var(--green);font-size:16px;}
+.offer-guarantee span{color:var(--green);}
 .offer-pricing{text-align:center;margin-bottom:36px;}
 .offer-old{font-size:18px;color:var(--grey);text-decoration:line-through;margin-bottom:8px;}
 .offer-new{font-family:'Barlow Condensed',sans-serif;font-size:clamp(48px,8vw,80px);font-weight:800;color:var(--white);line-height:1;margin-bottom:8px;}
 .offer-new .hl{color:var(--pl);}
 .offer-recurring{font-size:16px;color:var(--grey);margin-bottom:4px;}
 .offer-locked{font-size:13px;color:var(--green);font-style:italic;}
-.offer-cta{display:inline-flex;align-items:center;gap:12px;background:var(--purple);color:var(--white);padding:20px 48px;border-radius:7px;text-decoration:none;font-size:18px;font-weight:700;transition:all 0.2s;font-family:'Barlow Condensed',sans-serif;letter-spacing:1px;text-transform:uppercase;width:100%;justify-content:center;}
+.offer-cta{display:inline-flex;align-items:center;justify-content:center;gap:12px;background:var(--purple);color:var(--white);padding:20px 48px;border-radius:7px;text-decoration:none;font-size:18px;font-weight:700;transition:all 0.2s;font-family:'Barlow Condensed',sans-serif;letter-spacing:1px;text-transform:uppercase;width:100%;}
 .offer-cta:hover{background:var(--pl);transform:translateY(-2px);box-shadow:0 12px 40px var(--pg);}
 .offer-sub{text-align:center;margin-top:16px;font-size:13px;color:var(--grey);}
-
-/* COMING SOON */
 .coming-sec{padding:0 24px 80px;max-width:860px;margin:0 auto;}
 .coming-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px;}
 .coming-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;position:relative;overflow:hidden;}
@@ -126,8 +113,6 @@ nav{position:sticky;top:0;z-index:200;padding:16px 40px;display:flex;justify-con
 .coming-icon{font-size:24px;margin-bottom:12px;}
 .coming-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--white);margin-bottom:6px;}
 .coming-desc{font-size:13px;color:var(--grey);line-height:1.6;}
-
-/* COHORT */
 .cohort-sec{background:linear-gradient(135deg,rgba(239,68,68,0.06) 0%,rgba(124,58,237,0.06) 100%);border:1px solid rgba(239,68,68,0.2);border-radius:20px;padding:64px 52px;text-align:center;position:relative;overflow:hidden;margin:0 24px 80px;max-width:812px;margin-left:auto;margin-right:auto;}
 .cohort-sec::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:500px;height:300px;background:radial-gradient(ellipse,rgba(239,68,68,0.08) 0%,transparent 65%);pointer-events:none;}
 .cohort-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);padding:7px 16px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--red);margin-bottom:28px;font-family:'Barlow Condensed',sans-serif;}
@@ -139,13 +124,10 @@ nav{position:sticky;top:0;z-index:200;padding:16px 40px;display:flex;justify-con
 .cohort-cta{display:inline-flex;align-items:center;gap:12px;background:var(--purple);color:var(--white);padding:18px 40px;border-radius:7px;text-decoration:none;font-size:17px;font-weight:700;transition:all 0.2s;font-family:'Barlow Condensed',sans-serif;letter-spacing:1px;text-transform:uppercase;}
 .cohort-cta:hover{background:var(--pl);transform:translateY(-2px);box-shadow:0 12px 40px var(--pg);}
 .cohort-sub{margin-top:16px;font-size:13px;color:var(--grey);}
-
-/* FOOTER */
 footer{text-align:center;padding:32px 24px;border-top:1px solid var(--border);color:var(--grey);font-size:13px;}
 footer a{color:var(--pl);text-decoration:none;}
 footer p{margin-bottom:8px;}
 footer p:last-child{margin-bottom:0;}
-
 @media(max-width:600px){
   nav{padding:14px 20px;}
   .call-card{padding:32px 20px;}
@@ -161,7 +143,6 @@ footer p:last-child{margin-bottom:0;}
   <a href="https://buy.stripe.com/8x2aEW52M2VVayjeOm14400" target="_blank" class="nav-cta">Claim Your Spot →</a>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-glow"></div>
   <div class="live-pill"><span class="live-dot"></span>Live — Try It Right Now</div>
@@ -180,23 +161,27 @@ footer p:last-child{margin-bottom:0;}
       <div class="system-card-desc">Sarah lives on your website and captures every visitor who shows interest. <strong>No lead leaks from your website.</strong> Ever.</div>
     </div>
   </div>
+  <div class="pain-grid">
+    <div class="pain-item">"We're too busy to answer every call"</div>
+    <div class="pain-item">"Customers never leave voicemails"</div>
+    <div class="pain-item">"We lose jobs to faster competitors"</div>
+    <div class="pain-item">"Our website never generates leads"</div>
+  </div>
 </section>
 
-<!-- BANNER -->
 <div class="zero-banner">
   <div class="zero-banner-text"><span class="g">ZERO</span> LEAD LEAKAGE — <span class="p">EVERY CHANNEL. EVERY HOUR. EVERY DAY.</span></div>
   <div class="zero-banner-sub">From the phone line to the website — LeakProof captures every lead that tries to reach you</div>
 </div>
 
-<!-- DEMO 1 -->
 <div class="wrap">
   <div class="sb">
     <div class="leak-proof-tag">🔒 Missed Call Protection</div>
     <div class="dtag"><span class="tdot"></span>Demo 1 — Most Powerful</div>
     <p class="pq">"I called but no one picked up — so I called someone else..."</p>
     <h2 class="sh">The Moment You Miss A Call<br>Sarah Seals The Leak</h2>
-    <p class="sd">Call the demo number below. Sarah answers in seconds — day or night, weekends, holidays, after hours.</p>
-    <div class="sc">📍 <strong>When we set this up for you:</strong> You get your own dedicated US phone number — branded entirely to your business, trained on your services, your pricing, and your service area. Nobody else shares your number. Every missed call gets answered. Every lead gets captured.</div>
+    <p class="sd">Call the demo number below. Sarah answers in seconds — day or night, weekends, holidays, after hours. Every call answered. Zero leads lost from your phone line.</p>
+    <div class="sc">📍 <strong>Where this lives on your business:</strong> This replaces your voicemail permanently. You forward your existing business number to your own dedicated AI line — branded entirely to your company — whenever you are busy, on a job, or after hours. Your customers never hear voicemail again. They always get a real live conversation that captures their details and sends you an instant lead notification. <strong>Not a single call slips through.</strong></div>
     <div class="call-card">
       <div class="cl">This is our demo number — call it now</div>
       <div class="pn">+1 (765) 222-5291</div>
@@ -205,6 +190,7 @@ footer p:last-child{margin-bottom:0;}
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
         Copy Number
       </button>
+      <div class="client-note">✅ <strong>When we set this up for you:</strong> You get your own dedicated US phone number — branded entirely to your business, trained on your services, your pricing, and your service area. Nobody else shares your number. Every missed call gets answered. Every lead gets captured. Zero leakage.</div>
       <div class="csteps">
         <div class="cstep"><div class="sn">1</div><div class="st">Call the number above from any phone</div></div>
         <div class="cstep"><div class="sn">2</div><div class="st">Sarah answers in seconds — no hold music, no voicemail</div></div>
@@ -214,19 +200,18 @@ footer p:last-child{margin-bottom:0;}
     <div class="hr"></div>
   </div>
 
-  <!-- DEMO 2 -->
   <div class="sb">
     <div class="leak-proof-tag">🔒 Website Lead Capture</div>
     <div class="dtag"><span class="tdot"></span>Demo 2</div>
     <p class="pq">"People visit our website but nothing ever comes of it..."</p>
     <h2 class="sh">Every Website Visitor<br>Becomes A Captured Lead</h2>
-    <p class="sd">Click the chat bubble in the bottom right corner and talk to Sarah. Ask anything a real customer would ask.</p>
-    <div class="sc">📍 <strong>When we set this up for you:</strong> This sits as a live chat bubble on your website. Every visitor gets a real conversation that qualifies them as a lead and sends you their full details instantly.</div>
+    <p class="sd">Click the chat bubble in the bottom right corner and talk to Sarah. Ask anything a real roofing customer would ask — she handles it all and captures every lead automatically.</p>
+    <div class="sc">📍 <strong>Where this lives on your business:</strong> This replaces your static contact form — the one nobody fills out — and sits as a live chat bubble on your website. Every visitor gets a real conversation that qualifies them as a lead and sends you their full details instantly. Your website stops being a brochure and becomes a <strong>zero-leakage lead machine</strong> working at 2am, on weekends, and during every storm season.</div>
     <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:48px 40px;text-align:center;position:relative;overflow:hidden;">
       <div style="position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:radial-gradient(circle,rgba(124,58,237,0.08) 0%,transparent 65%);pointer-events:none;"></div>
       <div style="font-size:48px;margin-bottom:20px;">💬</div>
       <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;position:relative;z-index:1;">Sarah Is Live Right Now</h3>
-      <p style="font-size:16px;color:var(--grey);line-height:1.7;max-width:440px;margin:0 auto 28px;position:relative;z-index:1;">Click the chat bubble in the <strong style="color:var(--pl);">bottom right corner</strong> of this page and try to stump her.</p>
+      <p style="font-size:16px;color:var(--grey);line-height:1.7;max-width:440px;margin:0 auto 28px;position:relative;z-index:1;">Click the chat bubble in the <strong style="color:var(--pl);">bottom right corner</strong> of this page. Ask Sarah anything — about pricing, storm damage, insurance, or anything else.</p>
       <div style="display:inline-flex;align-items:center;gap:10px;background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.3);border-radius:8px;padding:14px 24px;font-size:14px;color:var(--pl);font-weight:600;position:relative;z-index:1;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         Click the chat bubble → bottom right corner
@@ -236,7 +221,6 @@ footer p:last-child{margin-bottom:0;}
   </div>
 </div>
 
-<!-- CALCULATOR -->
 <div style="padding:0 24px 80px;max-width:860px;margin:0 auto;">
   <div class="dtag" style="margin-bottom:20px;"><span class="tdot"></span>Find Out Right Now</div>
   <div class="calc-sec">
@@ -260,43 +244,18 @@ footer p:last-child{margin-bottom:0;}
   </div>
 </div>
 
-<!-- OFFER SECTION -->
 <div class="offer-sec" style="padding:64px 52px;">
   <div style="text-align:center;margin-bottom:40px;">
     <div class="offer-badge">⚡ Founding Cohort — Limited Spots</div>
-    <h2 class="offer-h">Everything You Need.<br><span class="hl">Zero Leads Lost.</span></h2>
+    <h2 class="offer-h">Everything Included.<br><span class="hl">Zero Leads Lost.</span></h2>
   </div>
   <div class="offer-grid">
-    <div class="offer-item">
-      <div class="offer-item-icon">📞</div>
-      <div class="offer-item-title">AI Voice Receptionist</div>
-      <div class="offer-item-desc">Sarah answers every missed call. 24 hours · 7 days · Storm season. Trained on your exact business.</div>
-    </div>
-    <div class="offer-item">
-      <div class="offer-item-icon">💬</div>
-      <div class="offer-item-title">AI Website Chat Agent</div>
-      <div class="offer-item-desc">Captures every website visitor. Qualifies leads automatically. Books free inspections instantly.</div>
-    </div>
-    <div class="offer-item">
-      <div class="offer-item-icon">📱</div>
-      <div class="offer-item-title">Dedicated US Phone Number</div>
-      <div class="offer-item-desc">Your own number for Sarah. Branded entirely to your business.</div>
-    </div>
-    <div class="offer-item">
-      <div class="offer-item-icon">📧</div>
-      <div class="offer-item-title">Instant Lead Notifications</div>
-      <div class="offer-item-desc">Every lead emailed to you immediately. Name, number, address, issue — everything.</div>
-    </div>
-    <div class="offer-item">
-      <div class="offer-item-icon">🎯</div>
-      <div class="offer-item-title">Fully Built For Your Business</div>
-      <div class="offer-item-desc">Your services, area, hours, and pricing. Built from scratch around your specific business.</div>
-    </div>
-    <div class="offer-item">
-      <div class="offer-item-icon">👤</div>
-      <div class="offer-item-title">Dedicated Account Manager</div>
-      <div class="offer-item-desc">Monthly reviews and ongoing support. You are never left on your own.</div>
-    </div>
+    <div class="offer-item"><div class="offer-item-icon">📞</div><div class="offer-item-title">AI Voice Receptionist</div></div>
+    <div class="offer-item"><div class="offer-item-icon">💬</div><div class="offer-item-title">AI Website Chat Agent</div></div>
+    <div class="offer-item"><div class="offer-item-icon">📱</div><div class="offer-item-title">Dedicated US Phone Number</div></div>
+    <div class="offer-item"><div class="offer-item-icon">📧</div><div class="offer-item-title">Instant Lead Notifications</div></div>
+    <div class="offer-item"><div class="offer-item-icon">🎯</div><div class="offer-item-title">Fully Built For Your Business</div></div>
+    <div class="offer-item"><div class="offer-item-icon">👤</div><div class="offer-item-title">Dedicated Account Manager</div></div>
   </div>
   <div class="offer-guarantees">
     <div class="offer-guarantee"><span>✅</span> Live within 7 days — guaranteed</div>
@@ -313,7 +272,6 @@ footer p:last-child{margin-bottom:0;}
   <p class="offer-sub">Setup within 7 days · 30 day money back guarantee · Cancel anytime after 3 months</p>
 </div>
 
-<!-- COMING SOON -->
 <div class="coming-sec">
   <div class="dtag"><span class="tdot"></span>Coming Next — Founding Members Get First Access</div>
   <h2 class="sh" style="margin-bottom:8px;">More Tools.<br>Zero Extra Effort.</h2>
@@ -332,7 +290,6 @@ footer p:last-child{margin-bottom:0;}
   </div>
 </div>
 
-<!-- COHORT -->
 <div class="cohort-sec">
   <div class="cohort-badge">⚡ Current Cohort — Limited Spots</div>
   <h2 class="cohort-h">Spots In This Cohort<br>Are <span class="hl">Filling Up</span></h2>
@@ -342,7 +299,6 @@ footer p:last-child{margin-bottom:0;}
   <p class="cohort-sub">$497 today · $220/month · Live within 7 days</p>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <p>© 2026 Appear AI · A product of Avarabrands Inc</p>
   <p><a href="mailto:hello@appearai.io">hello@appearai.io</a> · 151 Continental Dr, Suite 305, Newark, DE 19713</p>
@@ -363,11 +319,12 @@ function updateCalc(){
   if(!missed||!jobVal||!lostRate){res.innerHTML='<div class="cph">Fill in all three fields above to see the size of your lead leak</div>';return;}
   const monthly=Math.round(missed*4.33*(lostRate/100)*jobVal);
   const yearly=monthly*12;
-  res.innerHTML=`<div class="rl">Your lead leak is costing you every single month</div><div class="rn">$${monthly.toLocaleString()}</div><div class="rs">That is $${yearly.toLocaleString()} per year walking out your door. LeakProof seals every gap — and pays for itself with the very first job it captures.</div><a href="https://buy.stripe.com/8x2aEW52M2VVayjeOm14400" target="_blank" class="rcta">Claim Your Spot Now →</a>`;
+  res.innerHTML=`<div class="rl">Your lead leak is costing you every single month</div><div class="rn">$${monthly.toLocaleString()}</div><div class="rs">That is $${yearly.toLocaleString()} per year walking out your door. LeakProof seals every gap — and pays for itself with the very first job it captures.</div><a href="https://buy.stripe.com/8x2aEW52M2VVayjeOm14400" target="_blank" class="rcta">Seal The Leak Now →</a>`;
 }
 </script>
 
 <script type="text/javascript">
+window.addEventListener('load', function() {
   (function(d, t) {
     var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
     v.onload = function() {
@@ -382,23 +339,7 @@ function updateCalc(){
     v.type = 'text/javascript';
     s.parentNode.insertBefore(v, s);
   })(document, 'script');
-</script>
-
-<script type="text/javascript">
-  (function(d, t) {
-    var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-    v.onload = function() {
-      window.voiceflow.chat.load({
-        verify: { projectID: '69e0ac713edc3574e3357f53' },
-        url: 'https://general-runtime.voiceflow.com',
-        versionID: 'production',
-        voice: { url: 'https://runtime-api.voiceflow.com' }
-      });
-    }
-    v.src = 'https://cdn.voiceflow.com/widget-next/bundle.mjs';
-    v.type = 'text/javascript';
-    s.parentNode.insertBefore(v, s);
-  })(document, 'script');
+});
 </script>
 
 </body>
