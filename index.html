@@ -14,8 +14,10 @@
   --white:#ffffff; --grey:#6b6b80; --light:#c4c4d8;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
+html{overflow-x:hidden;position:relative;}
+body{overflow-x:hidden;position:relative;}
 html{scroll-behavior:smooth;}
-body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;overflow-x:hidden;}
+body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;}
 nav{position:sticky;top:0;left:0;right:0;z-index:200;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(6,6,10,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
 .logo{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;letter-spacing:4px;color:var(--white);text-decoration:none;text-transform:uppercase;}
 .nav-cta{background:var(--purple);color:var(--white);padding:10px 20px;border-radius:5px;text-decoration:none;font-size:13px;font-weight:700;letter-spacing:1px;transition:all 0.2s;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;}
@@ -134,6 +136,7 @@ footer p:last-child{margin-bottom:0;}
   .calc-sec,.cohort-sec,.offer-sec{padding:40px 20px;}
   .system-overview,.offer-grid,.coming-grid{grid-template-columns:1fr;}
 }
+#voiceflow-chat-frame{position:fixed !important;right:20px !important;bottom:20px !important;}
 </style>
 </head>
 <body>
